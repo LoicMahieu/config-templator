@@ -1,4 +1,4 @@
-# config-templator [![Build Status](https://secure.travis-ci.org/loicmahieu/config-templator.png?branch=master)](http://travis-ci.org/loicmahieu/config-templator)
+# config-templator [![Build Status](https://secure.travis-ci.org/LoicMahieu/config-templator.png?branch=master)](http://travis-ci.org/loicmahieu/config-templator)
 
 Dynamic remplacment in object, inspired by GruntJS config
 
