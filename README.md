@@ -1,4 +1,4 @@
-# config-templator [![Build Status](https://secure.travis-ci.org/LoicMahieu/config-templator.png?branch=master)](http://travis-ci.org/loicmahieu/config-templator)
+# config-templator [![Build Status](https://secure.travis-ci.org/LoicMahieu/config-templator.png?branch=master)](http://travis-ci.org/loicmahieu/config-templator) [![Dependency Status](https://gemnasium.com/LoicMahieu/config-templator.png)](https://gemnasium.com/LoicMahieu/config-templator)
 
 Dynamic remplacment in object, inspired by GruntJS config
 
@@ -24,6 +24,16 @@ Get:
 ```javascript
 config = config-templator.get(config, 'baz'); // bar
 ```
+
+### More examples
+
+```javascript
+var config = { port: 3000, uri: 'localhost:<%= port %>' };
+
+var config-templator = require('config-templator');
+config = config-templator.get(config, 'uri'); // localhost:3000
+```
+
 
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).

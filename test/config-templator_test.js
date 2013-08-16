@@ -34,7 +34,9 @@ var src = {
   nested: {
     theStr: '<%= str %>',
     arr2: '<%= arr2 %>'
-  }
+  },
+  port: 3000,
+  host: 'localhost:<%= port %>'
 };
 
 var target = {
@@ -51,7 +53,9 @@ var target = {
   nested: {
     theStr: 'bar',
     arr2: [1, 2, 3]
-  }
+  },
+  port: 3000,
+  host: 'localhost:3000'
 };
 
 exports['config-templator'] = {
