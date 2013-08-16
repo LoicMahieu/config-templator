@@ -1,6 +1,6 @@
 'use strict';
 
-var config-templator = require('../lib/config-templator.js');
+var templator = require('../lib/config-templator');
 
 /*
   ======== A Handy Little Nodeunit Reference ========
@@ -22,15 +22,52 @@ var config-templator = require('../lib/config-templator.js');
     test.ifError(value)
 */
 
+var src = {
+  str: 'bar',
+  str2: '<%= str %>',
+  arr: [1, 2, 3],
+  arr2: '<%= arr %>',
+  obj: {
+    test: true
+  },
+  obj2: '<%= obj %>',
+  nested: {
+    theStr: '<%= str %>',
+    arr2: '<%= arr2 %>'
+  }
+};
+
+var target = {
+  str: 'bar',
+  str2: 'bar',
+  arr: [1, 2, 3],
+  arr2: [1, 2, 3],
+  obj: {
+    test: true
+  },
+  obj2: {
+    test: true
+  },
+  nested: {
+    theStr: 'bar',
+    arr2: [1, 2, 3]
+  }
+};
+
 exports['config-templator'] = {
   setUp: function(done) {
-    // setup here
     done();
   },
-  'no args': function(test) {
+
+  '#flatten': function(test) {
     test.expect(1);
-    // tests here
-    test.equal(config-templator.awesome(), 'awesome', 'should be awesome.');
+    test.deepEqual(templator.flatten(src), target, 'should be equal.');
+    test.done();
+  },
+
+  '#get': function(test) {
+    test.expect(1);
+    test.equal(templator.get(src, 'nested.theStr'), 'bar', 'should be equal.');
     test.done();
   }
 };
