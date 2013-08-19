@@ -1,7 +1,7 @@
 {
   "name": "config-templator",
-  "version": "0.0.3",
-  "description": "Dynamic remplacment in object, inspired by GruntJS config",
+  "version": "0.0.4",
+  "description": "Dynamic replacement in object, inspired by GruntJS config",
   "homepage": "https://github.com/loicmahieu/config-templator",
   "bugs": "https://github.com/loicmahieu/config-templator/issues",
   "author": {
