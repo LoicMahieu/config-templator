@@ -1,77 +1,92 @@
+/*global describe: true, it: true*/
+
 'use strict';
 
+var expect = require('chai').expect;
+
 var templator = require('../lib/config-templator');
-
-/*
-  ======== A Handy Little Nodeunit Reference ========
-  https://github.com/caolan/nodeunit
-
-  Test methods:
-    test.expect(numAssertions)
-    test.done()
-  Test assertions:
-    test.ok(value, [message])
-    test.equal(actual, expected, [message])
-    test.notEqual(actual, expected, [message])
-    test.deepEqual(actual, expected, [message])
-    test.notDeepEqual(actual, expected, [message])
-    test.strictEqual(actual, expected, [message])
-    test.notStrictEqual(actual, expected, [message])
-    test.throws(block, [error], [message])
-    test.doesNotThrow(block, [error], [message])
-    test.ifError(value)
-*/
 
 var src = {
   str: 'bar',
   str2: '<%= str %>',
+
   arr: [1, 2, 3],
   arr2: '<%= arr %>',
+
   obj: {
     test: true
   },
   obj2: '<%= obj %>',
+
   nested: {
     theStr: '<%= str %>',
     arr2: '<%= arr2 %>'
   },
   port: 3000,
-  host: 'localhost:<%= port %>'
+  port2: '<%- port %>',
+  host: 'localhost:<%- port2 %>',
+  fullURL: 'http://<%- host %>/app',
+  fullURL2: '<%- fullURL %>/v2',
+
+  nested2: {
+    foo: '<%- fullURL2 %>/user'
+  },
+
+  appdir: '<%- dirname %>/app',
+  express: {
+    routesDir: '<%- appdir %>/routes'
+  },
+  dirname: 'path/to/app/dir'
 };
 
 var target = {
   str: 'bar',
   str2: 'bar',
+
   arr: [1, 2, 3],
   arr2: [1, 2, 3],
+
   obj: {
     test: true
   },
   obj2: {
     test: true
   },
+
   nested: {
     theStr: 'bar',
     arr2: [1, 2, 3]
   },
   port: 3000,
-  host: 'localhost:3000'
+  port2: "3000",
+  host: 'localhost:3000',
+  fullURL: 'http://localhost:3000/app',
+  fullURL2: 'http://localhost:3000/app/v2',
+
+  nested2: {
+    foo: 'http://localhost:3000/app/v2/user'
+  },
+
+  appdir: 'path/to/app/dir/app',
+  express: {
+    routesDir: 'path/to/app/dir/app/routes',
+  },
+  dirname: 'path/to/app/dir'
 };
 
-exports['config-templator'] = {
-  setUp: function(done) {
+
+describe('config-templator', function () {
+  
+  it('#flatten', function (done) {
+    var result = templator.flatten(src);
+    expect(result).to.deep.equal(target);
     done();
-  },
+  });
 
-  '#flatten': function(test) {
-    test.expect(1);
-    test.deepEqual(templator.flatten(src), target, 'should be equal.');
-    test.done();
-  },
+  it('#get', function (done) {
+    var result = templator.get(src, 'nested.theStr');
+    expect(result).to.equal('bar');
+    done();
+  });
 
-  '#get': function(test) {
-    test.expect(1);
-    test.equal(templator.get(src, 'nested.theStr'), 'bar', 'should be equal.');
-    test.done();
-  }
-};
+});
