@@ -1,6 +1,6 @@
 {
   "name": "config-templator",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Dynamic replacement in object, inspired by GruntJS config",
   "homepage": "https://github.com/loicmahieu/config-templator",
   "bugs": "https://github.com/loicmahieu/config-templator/issues",
@@ -28,6 +28,7 @@
     "grunt-contrib-jshint": "~0.6.0",
     "grunt-mocha-test": "~0.6.3",
     "grunt-contrib-watch": "~0.5.0",
-    "chai": "~1.7.2"
+    "chai": "~1.7.2",
+    "grunt-release": "~0.7.0"
   }
 }
