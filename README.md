@@ -1,5 +1,7 @@
 # config-templator [![Build Status](https://secure.travis-ci.org/LoicMahieu/config-templator.png?branch=master)](http://travis-ci.org/loicmahieu/config-templator) [![Dependency Status](https://gemnasium.com/LoicMahieu/config-templator.png)](https://gemnasium.com/LoicMahieu/config-templator)
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/LoicMahieu/config-templator.svg)](https://greenkeeper.io/)
+
 Dynamic replacement in object, inspired by GruntJS config
 
 ## Getting Started
